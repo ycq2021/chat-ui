@@ -161,9 +161,9 @@ export const Chat: FC<Props> = memo(
               Welcome to Chatbot UI  
           
             </div>
-            赞助 <img  style="max-width: 30%; height: auto;" src="https://www.ttder.cn/Upload/WXSK.jpg" />
+            
             <div className="text-center text-lg text-black dark:text-white">
-              <div className="mb-8">{`Chatbot UI is an open source clone of OpenAI's ChatGPT UI.`}</div>
+              <div className="mb-8">{`赞 助<img  style="max-width: 30%; height: auto;" src="https://www.ttder.cn/Upload/WXSK.jpg" />.`}</div>
               <div className="mb-2 font-bold">
                 Important: Chatbot UI is 100% unaffiliated with OpenAI.
               </div>
