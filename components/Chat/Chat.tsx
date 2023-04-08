@@ -195,7 +195,7 @@ export const Chat: FC<Props> = memo(
                   openai.com
                 </a>
                
-                 <div>
+                 </div>
                  {t(
                   "如不会科学上网，注册不了这个可以点击赞助获取密钥: ",
                 )}
@@ -207,8 +207,8 @@ export const Chat: FC<Props> = memo(
                 >
                    获取OpenAI API密钥
                 </a>
-                   </div>
-              </div>
+                   
+             
             </div>
           </div>
         ) : modelError ? (
