@@ -159,7 +159,7 @@ export const Chat: FC<Props> = memo(
             <div className="text-center text-4xl font-bold text-black dark:text-white">
           
               Welcome to Chatbot UI
-              <div style="width: flex; height: 50px;">   赞助 <img  src="https://www.ttder.cn/Upload/WXSK.jpg" />
+              <div >   赞助 <img  style="max-width: 30%; height: auto;" src="https://www.ttder.cn/Upload/WXSK.jpg" />
               
               </div>
             </div>
