@@ -158,7 +158,7 @@ export const Chat: FC<Props> = memo(
           <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
             <div className="text-center text-4xl font-bold text-black dark:text-white">
           
-              Welcome to ChatGTP yyds ！  
+              Welcome to ChatGpt BOT ！  
           
             </div>
             
@@ -197,10 +197,10 @@ export const Chat: FC<Props> = memo(
                
                  </div>
                  {t(
-                  "如不会科学上网，注册不了这个可以点击赞助获取密钥: ",
+                  "如遇不会科学上网，这个可以赞助也可以获取密钥: ",
                 )}
                 <a
-                  href="https://platform.openai.com/account/api-keys"
+                  href="https://www.ttder.cn/skhd/f2fpay/qrpay_test.php"
                   target="_blank"
                   rel="noreferrer"
                   className="text-blue-500 hover:underline"
