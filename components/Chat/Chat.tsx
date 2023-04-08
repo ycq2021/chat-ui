@@ -158,12 +158,12 @@ export const Chat: FC<Props> = memo(
           <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
             <div className="text-center text-4xl font-bold text-black dark:text-white">
           
-              Welcome to Chatbot UI  
+              Welcome to ChatGTP yyds ！  
           
             </div>
             
             <div className="text-center text-lg text-black dark:text-white">
-              <div className="mb-8">{`赞 助<img  style="max-width: 30%; height: auto;" src="https://www.ttder.cn/Upload/WXSK.jpg" />.`}</div>
+              <div className="mb-8">赞 助{<img  style="max-width: 30%; height: auto;" src="https://www.ttder.cn/Upload/WXSK.jpg" />}</div>
               <div className="mb-2 font-bold">
                 Important: Chatbot UI is 100% unaffiliated with OpenAI.
               </div>
