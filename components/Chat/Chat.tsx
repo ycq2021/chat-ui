@@ -163,7 +163,7 @@ export const Chat: FC<Props> = memo(
             </div>
             
             <div className="text-center text-lg text-black dark:text-white">
-              <div className="mb-8">赞 助{<img  style="max-width: 30%; height: auto;" src="https://www.ttder.cn/Upload/WXSK.jpg" />}</div>
+            欢迎试用！
               <div className="mb-2 font-bold">
                 Important: Chatbot UI is 100% unaffiliated with OpenAI.
               </div>
@@ -193,6 +193,18 @@ export const Chat: FC<Props> = memo(
                   className="text-blue-500 hover:underline"
                 >
                   openai.com
+                </a>
+                
+                 {t(
+                  "如果注册不了这个可以点击赞助这个获取: ",
+                )}
+                <a
+                  href="https://platform.openai.com/account/api-keys"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                   获取OpenAI API密钥
                 </a>
               </div>
             </div>
