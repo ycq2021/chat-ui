@@ -194,9 +194,10 @@ export const Chat: FC<Props> = memo(
                 >
                   openai.com
                 </a>
+                <br>
                 
                  {t(
-                  "如果注册不了这个可以点击赞助这个获取: ",
+                  "如不会科学上网，注册不了这个可以点击赞助获取密钥: ",
                 )}
                 <a
                   href="https://platform.openai.com/account/api-keys"
