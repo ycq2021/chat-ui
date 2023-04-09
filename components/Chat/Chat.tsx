@@ -314,6 +314,7 @@ export const Chat: FC<Props> = memo(
                 </>
               )}
             </div>
+          //模态杠开始
 import React, { useState } from 'react';
 import Modal from './Modal';
 
@@ -345,6 +346,8 @@ const ExampleModal = () => {
 };
 
 export default ExampleModal;
+            //模态框结束 
+            
             <ChatInput
               stopConversationRef={stopConversationRef}
               textareaRef={textareaRef}
