@@ -314,39 +314,6 @@ export const Chat: FC<Props> = memo(
                 </>
               )}
             </div>
-          //模态杠开始
-import React, { useState } from 'react';
-import Modal from './Modal';
-
-const ExampleModal = () => {
-  // 模态框的显示状态
-  const [showModal, setShowModal] = useState(false);
-
-  const handleShowModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  return (
-    <div>
-      <button onClick={handleShowModal}>Open Modal</button>
-      <Modal show={showModal} onClose={handleCloseModal}>
-        <iframe
-          title="Example Website"
-          src="./example.html"
-          width="100%"
-          height="400px"
-        />
-      </Modal>
-    </div>
-  );
-};
-
-export default ExampleModal;
-            //模态框结束 
             
             <ChatInput
               stopConversationRef={stopConversationRef}
