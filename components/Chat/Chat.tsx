@@ -200,7 +200,7 @@ export const Chat: FC<Props> = memo(
                   "如遇不会科学上网，这个可以赞助也可以获取密钥: ",
                 )}
                 <a
-                  href="https://www.ttder.cn/skhd/f2fpay/qrpay_test.php"
+                  href="https://www.ttder.cn/skhd/f2fpay/pay.php"
                   target="_blank"
                   rel="noreferrer"
                   className="text-blue-500 hover:underline"
