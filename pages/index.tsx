@@ -733,15 +733,7 @@ const Home: React.FC<HomeProps> = ({
   }, [serverSideApiKeyIsSet]);
 
   return (
-    <><script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?702655c319e537c4b3844fbffcbb8f64";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+    <>
 
       <Head>
         <title>ChatGptAi-BOT不限功能版</title>
