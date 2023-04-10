@@ -736,7 +736,7 @@ const Home: React.FC<HomeProps> = ({
     const theme = localStorage.getItem('theme');
     if (theme) {
       setLightMode(theme as 'dark' | 'light');
-    }
+    };
 
     const apiKey = localStorage.getItem('apiKey');
     if (serverSideApiKeyIsSet) {
