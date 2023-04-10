@@ -1,42 +1,64 @@
-import { Chat } from '@/components/Chat/Chat';
-import { Chatbar } from '@/components/Chatbar/Chatbar';
-import { Navbar } from '@/components/Mobile/Navbar';
-import { Promptbar } from '@/components/Promptbar/Promptbar';
-import { ChatBody, Conversation, Message } from '@/types/chat';
-import { KeyValuePair } from '@/types/data';
-import { ErrorMessage } from '@/types/error';
-import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
-import { Folder, FolderType } from '@/types/folder';
+import { Chat
+} from '@/components/Chat/Chat';
+import { Chatbar
+} from '@/components/Chatbar/Chatbar';
+import { Navbar
+} from '@/components/Mobile/Navbar';
+import { Promptbar
+} from '@/components/Promptbar/Promptbar';
+import { ChatBody, Conversation, Message
+} from '@/types/chat';
+import { KeyValuePair
+} from '@/types/data';
+import { ErrorMessage
+} from '@/types/error';
+import { LatestExportFormat, SupportedExportFormats
+} from '@/types/export';
+import { Folder, FolderType
+} from '@/types/folder';
 import {
   OpenAIModel,
   OpenAIModelID,
   OpenAIModels,
   fallbackModelID,
 } from '@/types/openai';
-import { Plugin, PluginKey } from '@/types/plugin';
-import { Prompt } from '@/types/prompt';
-import { getEndpoint } from '@/utils/app/api';
+import { Plugin, PluginKey
+} from '@/types/plugin';
+import { Prompt
+} from '@/types/prompt';
+import { getEndpoint
+} from '@/utils/app/api';
 import {
   cleanConversationHistory,
   cleanSelectedConversation,
 } from '@/utils/app/clean';
-import { DEFAULT_SYSTEM_PROMPT } from '@/utils/app/const';
+import { DEFAULT_SYSTEM_PROMPT
+} from '@/utils/app/const';
 import {
   saveConversation,
   saveConversations,
   updateConversation,
 } from '@/utils/app/conversation';
-import { saveFolders } from '@/utils/app/folders';
-import { exportData, importData } from '@/utils/app/importExport';
-import { savePrompts } from '@/utils/app/prompts';
-import { IconArrowBarLeft, IconArrowBarRight } from '@tabler/icons-react';
-import { GetServerSideProps } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { saveFolders
+} from '@/utils/app/folders';
+import { exportData, importData
+} from '@/utils/app/importExport';
+import { savePrompts
+} from '@/utils/app/prompts';
+import { IconArrowBarLeft, IconArrowBarRight
+} from '@tabler/icons-react';
+import { GetServerSideProps
+} from 'next';
+import { useTranslation
+} from 'next-i18next';
+import { serverSideTranslations
+} from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState
+} from 'react';
 import toast from 'react-hot-toast';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4
+} from 'uuid';
 
 interface HomeProps {
   serverSideApiKeyIsSet: boolean;
@@ -49,31 +71,46 @@ const Home: React.FC<HomeProps> = ({
   serverSidePluginKeysSet,
   defaultModelId,
 }) => {
-  const { t } = useTranslation('chat');
+  const { t
+  } = useTranslation('chat');
 
   // STATE ----------------------------------------------
 
-  const [apiKey, setApiKey] = useState<string>('');
-  const [pluginKeys, setPluginKeys] = useState<PluginKey[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [lightMode, setLightMode] = useState<'dark' | 'light'>('dark');
-  const [messageIsStreaming, setMessageIsStreaming] = useState<boolean>(false);
+  const [apiKey, setApiKey
+  ] = useState<string>('');
+  const [pluginKeys, setPluginKeys
+  ] = useState<PluginKey[]>([]);
+  const [loading, setLoading
+  ] = useState<boolean>(false);
+  const [lightMode, setLightMode
+  ] = useState<'dark' | 'light'>('dark');
+  const [messageIsStreaming, setMessageIsStreaming
+  ] = useState<boolean>(false);
 
-  const [modelError, setModelError] = useState<ErrorMessage | null>(null);
+  const [modelError, setModelError
+  ] = useState<ErrorMessage | null>(null);
 
-  const [models, setModels] = useState<OpenAIModel[]>([]);
+  const [models, setModels
+  ] = useState<OpenAIModel[]>([]);
 
-  const [folders, setFolders] = useState<Folder[]>([]);
+  const [folders, setFolders
+  ] = useState<Folder[]>([]);
 
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [selectedConversation, setSelectedConversation] =
+  const [conversations, setConversations
+  ] = useState<Conversation[]>([]);
+  const [selectedConversation, setSelectedConversation
+  ] =
     useState<Conversation>();
-  const [currentMessage, setCurrentMessage] = useState<Message>();
+  const [currentMessage, setCurrentMessage
+  ] = useState<Message>();
 
-  const [showSidebar, setShowSidebar] = useState<boolean>(true);
+  const [showSidebar, setShowSidebar
+  ] = useState<boolean>(true);
 
-  const [prompts, setPrompts] = useState<Prompt[]>([]);
-  const [showPromptbar, setShowPromptbar] = useState<boolean>(true);
+  const [prompts, setPrompts
+  ] = useState<Prompt[]>([]);
+  const [showPromptbar, setShowPromptbar
+  ] = useState<boolean>(true);
 
   // REFS ----------------------------------------------
 
@@ -90,19 +127,22 @@ const Home: React.FC<HomeProps> = ({
       let updatedConversation: Conversation;
 
       if (deleteCount) {
-        const updatedMessages = [...selectedConversation.messages];
+        const updatedMessages = [...selectedConversation.messages
+        ];
         for (let i = 0; i < deleteCount; i++) {
           updatedMessages.pop();
         }
 
         updatedConversation = {
           ...selectedConversation,
-          messages: [...updatedMessages, message],
+          messages: [...updatedMessages, message
+          ],
         };
       } else {
         updatedConversation = {
           ...selectedConversation,
-          messages: [...selectedConversation.messages, message],
+          messages: [...selectedConversation.messages, message
+          ],
         };
       }
 
@@ -135,7 +175,8 @@ const Home: React.FC<HomeProps> = ({
       }
 
       const controller = new AbortController();
-      const response = await fetch(endpoint, {
+      const response = await fetch(endpoint,
+      {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -161,9 +202,11 @@ const Home: React.FC<HomeProps> = ({
 
       if (!plugin) {
         if (updatedConversation.messages.length === 1) {
-          const { content } = message;
+          const { content
+          } = message;
           const customName =
-            content.length > 30 ? content.substring(0, 30) + '...' : content;
+            content.length > 30 ? content.substring(0,
+          30) + '...' : content;
 
           updatedConversation = {
             ...updatedConversation,
@@ -185,7 +228,8 @@ const Home: React.FC<HomeProps> = ({
             done = true;
             break;
           }
-          const { value, done: doneReading } = await reader.read();
+          const { value, done: doneReading
+          } = await reader.read();
           done = doneReading;
           const chunkValue = decoder.decode(value);
 
@@ -195,7 +239,8 @@ const Home: React.FC<HomeProps> = ({
             isFirst = false;
             const updatedMessages: Message[] = [
               ...updatedConversation.messages,
-              { role: 'assistant', content: chunkValue },
+              { role: 'assistant', content: chunkValue
+              },
             ];
 
             updatedConversation = {
@@ -211,11 +256,11 @@ const Home: React.FC<HomeProps> = ({
                   return {
                     ...message,
                     content: text,
-                  };
-                }
+                };
+              }
 
                 return message;
-              },
+            },
             );
 
             updatedConversation = {
@@ -233,10 +278,10 @@ const Home: React.FC<HomeProps> = ({
           (conversation) => {
             if (conversation.id === selectedConversation.id) {
               return updatedConversation;
-            }
+          }
 
             return conversation;
-          },
+        },
         );
 
         if (updatedConversations.length === 0) {
@@ -248,11 +293,13 @@ const Home: React.FC<HomeProps> = ({
 
         setMessageIsStreaming(false);
       } else {
-        const { answer } = await response.json();
+        const { answer
+        } = await response.json();
 
         const updatedMessages: Message[] = [
           ...updatedConversation.messages,
-          { role: 'assistant', content: answer },
+          { role: 'assistant', content: answer
+          },
         ];
 
         updatedConversation = {
@@ -267,10 +314,10 @@ const Home: React.FC<HomeProps> = ({
           (conversation) => {
             if (conversation.id === selectedConversation.id) {
               return updatedConversation;
-            }
+          }
 
             return conversation;
-          },
+        },
         );
 
         if (updatedConversations.length === 0) {
@@ -300,7 +347,8 @@ const Home: React.FC<HomeProps> = ({
       ],
     } as ErrorMessage;
 
-    const response = await fetch('/api/models', {
+    const response = await fetch('/api/models',
+    {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -313,9 +361,11 @@ const Home: React.FC<HomeProps> = ({
     if (!response.ok) {
       try {
         const data = await response.json();
-        Object.assign(error, {
+        Object.assign(error,
+        {
           code: data.error?.code,
-          messageLines: [data.error?.message],
+          messageLines: [data.error?.message
+          ],
         });
       } catch (e) {}
       setModelError(error);
@@ -359,11 +409,13 @@ const Home: React.FC<HomeProps> = ({
 
       localStorage.setItem('pluginKeys', JSON.stringify(updatedPluginKeys));
     } else {
-      setPluginKeys([...pluginKeys, pluginKey]);
+      setPluginKeys([...pluginKeys, pluginKey
+      ]);
 
       localStorage.setItem(
         'pluginKeys',
-        JSON.stringify([...pluginKeys, pluginKey]),
+        JSON.stringify([...pluginKeys, pluginKey
+      ]),
       );
     }
   };
@@ -399,10 +451,12 @@ const Home: React.FC<HomeProps> = ({
   };
 
   const handleImportConversations = (data: SupportedExportFormats) => {
-    const { history, folders, prompts }: LatestExportFormat = importData(data);
+    const { history, folders, prompts
+    }: LatestExportFormat = importData(data);
 
     setConversations(history);
-    setSelectedConversation(history[history.length - 1]);
+    setSelectedConversation(history[history.length - 1
+    ]);
     setFolders(folders);
     setPrompts(prompts);
   };
@@ -421,7 +475,8 @@ const Home: React.FC<HomeProps> = ({
       type,
     };
 
-    const updatedFolders = [...folders, newFolder];
+    const updatedFolders = [...folders, newFolder
+    ];
 
     setFolders(updatedFolders);
     saveFolders(updatedFolders);
@@ -478,23 +533,30 @@ const Home: React.FC<HomeProps> = ({
   // CONVERSATION OPERATIONS  --------------------------------------------
 
   const handleNewConversation = () => {
-    const lastConversation = conversations[conversations.length - 1];
+    const lastConversation = conversations[conversations.length - 1
+    ];
 
     const newConversation: Conversation = {
       id: uuidv4(),
-      name: `${t('New Conversation')}`,
+      name: `${t('New Conversation')
+      }`,
       messages: [],
       model: lastConversation?.model || {
-        id: OpenAIModels[defaultModelId].id,
-        name: OpenAIModels[defaultModelId].name,
-        maxLength: OpenAIModels[defaultModelId].maxLength,
-        tokenLimit: OpenAIModels[defaultModelId].tokenLimit,
+        id: OpenAIModels[defaultModelId
+        ].id,
+        name: OpenAIModels[defaultModelId
+        ].name,
+        maxLength: OpenAIModels[defaultModelId
+        ].maxLength,
+        tokenLimit: OpenAIModels[defaultModelId
+        ].tokenLimit,
       },
       prompt: DEFAULT_SYSTEM_PROMPT,
       folderId: null,
     };
 
-    const updatedConversations = [...conversations, newConversation];
+    const updatedConversations = [...conversations, newConversation
+    ];
 
     setSelectedConversation(newConversation);
     setConversations(updatedConversations);
@@ -514,15 +576,18 @@ const Home: React.FC<HomeProps> = ({
 
     if (updatedConversations.length > 0) {
       setSelectedConversation(
-        updatedConversations[updatedConversations.length - 1],
+        updatedConversations[updatedConversations.length - 1
+      ],
       );
-      saveConversation(updatedConversations[updatedConversations.length - 1]);
+      saveConversation(updatedConversations[updatedConversations.length - 1
+      ]);
     } else {
       setSelectedConversation({
         id: uuidv4(),
         name: 'New conversation',
         messages: [],
-        model: OpenAIModels[defaultModelId],
+        model: OpenAIModels[defaultModelId
+        ],
         prompt: DEFAULT_SYSTEM_PROMPT,
         folderId: null,
       });
@@ -536,10 +601,12 @@ const Home: React.FC<HomeProps> = ({
   ) => {
     const updatedConversation = {
       ...conversation,
-      [data.key]: data.value,
+      [data.key
+      ]: data.value,
     };
 
-    const { single, all } = updateConversation(
+    const { single, all
+    } = updateConversation(
       updatedConversation,
       conversations,
     );
@@ -556,7 +623,8 @@ const Home: React.FC<HomeProps> = ({
       id: uuidv4(),
       name: 'New conversation',
       messages: [],
-      model: OpenAIModels[defaultModelId],
+      model: OpenAIModels[defaultModelId
+      ],
       prompt: DEFAULT_SYSTEM_PROMPT,
       folderId: null,
     });
@@ -573,8 +641,8 @@ const Home: React.FC<HomeProps> = ({
         .map((m, i) => {
           if (i < messageIndex) {
             return m;
-          }
-        })
+        }
+      })
         .filter((m) => m) as Message[];
 
       const updatedConversation = {
@@ -582,7 +650,8 @@ const Home: React.FC<HomeProps> = ({
         messages: updatedMessages,
       };
 
-      const { single, all } = updateConversation(
+      const { single, all
+      } = updateConversation(
         updatedConversation,
         conversations,
       );
@@ -599,14 +668,17 @@ const Home: React.FC<HomeProps> = ({
   const handleCreatePrompt = () => {
     const newPrompt: Prompt = {
       id: uuidv4(),
-      name: `Prompt ${prompts.length + 1}`,
+      name: `Prompt ${prompts.length + 1
+      }`,
       description: '',
       content: '',
-      model: OpenAIModels[defaultModelId],
+      model: OpenAIModels[defaultModelId
+      ],
       folderId: null,
     };
 
-    const updatedPrompts = [...prompts, newPrompt];
+    const updatedPrompts = [...prompts, newPrompt
+    ];
 
     setPrompts(updatedPrompts);
     savePrompts(updatedPrompts);
@@ -638,19 +710,25 @@ const Home: React.FC<HomeProps> = ({
       handleSend(currentMessage);
       setCurrentMessage(undefined);
     }
-  }, [currentMessage]);
+  },
+  [currentMessage
+  ]);
 
   useEffect(() => {
     if (window.innerWidth < 640) {
       setShowSidebar(false);
     }
-  }, [selectedConversation]);
+  },
+  [selectedConversation
+  ]);
 
   useEffect(() => {
     if (apiKey) {
       fetchModels(apiKey);
     }
-  }, [apiKey]);
+  },
+  [apiKey
+  ]);
 
   // ON LOAD --------------------------------------------
 
@@ -725,12 +803,15 @@ const Home: React.FC<HomeProps> = ({
         id: uuidv4(),
         name: 'New conversation',
         messages: [],
-        model: OpenAIModels[defaultModelId],
+        model: OpenAIModels[defaultModelId
+        ],
         prompt: DEFAULT_SYSTEM_PROMPT,
         folderId: null,
       });
     }
-  }, [serverSideApiKeyIsSet]);
+  },
+  [serverSideApiKeyIsSet
+  ]);
 
   return (
     <>
@@ -745,12 +826,16 @@ const Home: React.FC<HomeProps> = ({
       </Head>
       {selectedConversation && (
         <main
-          className={`flex h-screen w-screen flex-col text-sm text-white dark:text-white ${lightMode}`}
+          className={`flex h-screen w-screen flex-col text-sm text-white dark:text-white ${lightMode
+      }`
+    }
         >
           <div className="fixed top-0 w-full sm:hidden">
             <Navbar
-              selectedConversation={selectedConversation}
-              onNewConversation={handleNewConversation}
+              selectedConversation={selectedConversation
+    }
+              onNewConversation={handleNewConversation
+    }
             />
           </div>
 
@@ -758,109 +843,175 @@ const Home: React.FC<HomeProps> = ({
             {showSidebar ? (
               <div>
                 <Chatbar
-                  loading={messageIsStreaming}
-                  conversations={conversations}
-                  lightMode={lightMode}
-                  selectedConversation={selectedConversation}
-                  apiKey={apiKey}
-                  serverSideApiKeyIsSet={serverSideApiKeyIsSet}
-                  pluginKeys={pluginKeys}
-                  serverSidePluginKeysSet={serverSidePluginKeysSet}
-                  folders={folders.filter((folder) => folder.type === 'chat')}
-                  onToggleLightMode={handleLightMode}
-                  onCreateFolder={(name) => handleCreateFolder(name, 'chat')}
-                  onDeleteFolder={handleDeleteFolder}
-                  onUpdateFolder={handleUpdateFolder}
-                  onNewConversation={handleNewConversation}
-                  onSelectConversation={handleSelectConversation}
-                  onDeleteConversation={handleDeleteConversation}
-                  onUpdateConversation={handleUpdateConversation}
-                  onApiKeyChange={handleApiKeyChange}
-                  onClearConversations={handleClearConversations}
-                  onExportConversations={handleExportData}
-                  onImportConversations={handleImportConversations}
-                  onPluginKeyChange={handlePluginKeyChange}
-                  onClearPluginKey={handleClearPluginKey}
+                  loading={messageIsStreaming
+      }
+                  conversations={conversations
+      }
+                  lightMode={lightMode
+      }
+                  selectedConversation={selectedConversation
+      }
+                  apiKey={apiKey
+      }
+                  serverSideApiKeyIsSet={serverSideApiKeyIsSet
+      }
+                  pluginKeys={pluginKeys
+      }
+                  serverSidePluginKeysSet={serverSidePluginKeysSet
+      }
+                  folders={folders.filter((folder) => folder.type === 'chat')
+      }
+                  onToggleLightMode={handleLightMode
+      }
+                  onCreateFolder={(name) => handleCreateFolder(name, 'chat')
+      }
+                  onDeleteFolder={handleDeleteFolder
+      }
+                  onUpdateFolder={handleUpdateFolder
+      }
+                  onNewConversation={handleNewConversation
+      }
+                  onSelectConversation={handleSelectConversation
+      }
+                  onDeleteConversation={handleDeleteConversation
+      }
+                  onUpdateConversation={handleUpdateConversation
+      }
+                  onApiKeyChange={handleApiKeyChange
+      }
+                  onClearConversations={handleClearConversations
+      }
+                  onExportConversations={handleExportData
+      }
+                  onImportConversations={handleImportConversations
+      }
+                  onPluginKeyChange={handlePluginKeyChange
+      }
+                  onClearPluginKey={handleClearPluginKey
+      }
                 />
 
                 <button
                   className="fixed top-5 left-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:left-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
-                  onClick={handleToggleChatbar}
+                  onClick={handleToggleChatbar
+      }
                 >
                   <IconArrowBarLeft />
                 </button>
                 <div
-                  onClick={handleToggleChatbar}
+                  onClick={handleToggleChatbar
+      }
                   className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
                 ></div>
               </div>
             ) : (
               <button
                 className="fixed top-2.5 left-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:left-4 sm:h-8 sm:w-8 sm:text-neutral-700"
-                onClick={handleToggleChatbar}
+                onClick={handleToggleChatbar
+      }
               >
                 <IconArrowBarRight />
               </button>
-            )}
+            )
+    }
 
             <div className="flex flex-1">
               <Chat
-                conversation={selectedConversation}
-                messageIsStreaming={messageIsStreaming}
-                apiKey={apiKey}
-                serverSideApiKeyIsSet={serverSideApiKeyIsSet}
-                defaultModelId={defaultModelId}
-                modelError={modelError}
-                models={models}
-                loading={loading}
-                prompts={prompts}
-                onSend={handleSend}
-                onUpdateConversation={handleUpdateConversation}
-                onEditMessage={handleEditMessage}
-                stopConversationRef={stopConversationRef}
+                conversation={selectedConversation
+    }
+                messageIsStreaming={messageIsStreaming
+    }
+                apiKey={apiKey
+    }
+                serverSideApiKeyIsSet={serverSideApiKeyIsSet
+    }
+                defaultModelId={defaultModelId
+    }
+                modelError={modelError
+    }
+                models={models
+    }
+                loading={loading
+    }
+                prompts={prompts
+    }
+                onSend={handleSend
+    }
+                onUpdateConversation={handleUpdateConversation
+    }
+                onEditMessage={handleEditMessage
+    }
+                stopConversationRef={stopConversationRef
+    }
               />
             </div>
 
             {showPromptbar ? (
               <div>
                 <Promptbar
-                  prompts={prompts}
-                  folders={folders.filter((folder) => folder.type === 'prompt')}
-                  onCreatePrompt={handleCreatePrompt}
-                  onUpdatePrompt={handleUpdatePrompt}
-                  onDeletePrompt={handleDeletePrompt}
-                  onCreateFolder={(name) => handleCreateFolder(name, 'prompt')}
-                  onDeleteFolder={handleDeleteFolder}
-                  onUpdateFolder={handleUpdateFolder}
+                  prompts={prompts
+      }
+                  folders={folders.filter((folder) => folder.type === 'prompt')
+      }
+                  onCreatePrompt={handleCreatePrompt
+      }
+                  onUpdatePrompt={handleUpdatePrompt
+      }
+                  onDeletePrompt={handleDeletePrompt
+      }
+                  onCreateFolder={(name) => handleCreateFolder(name, 'prompt')
+      }
+                  onDeleteFolder={handleDeleteFolder
+      }
+                  onUpdateFolder={handleUpdateFolder
+      }
                 />
                 <button
                   className="fixed top-5 right-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
-                  onClick={handleTogglePromptbar}
+                  onClick={handleTogglePromptbar
+      }
                 >
                   <IconArrowBarRight />
                 </button>
                 <div
-                  onClick={handleTogglePromptbar}
+                  onClick={handleTogglePromptbar
+      }
                   className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
                 ></div>
               </div>
             ) : (
               <button
                 className="fixed top-2.5 right-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-4 sm:h-8 sm:w-8 sm:text-neutral-700"
-                onClick={handleTogglePromptbar}
+                onClick={handleTogglePromptbar
+      }
               >
                 <IconArrowBarLeft />
               </button>
-            )}
+            )
+    }
           </div>
         </main>
-      )}
+      )
+  }
     </>
+
   );
 };
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+
+
+declare const _hmt: Array<any>;
+((window, document, url) => {
+  window._hmt = window._hmt || [];
+  const hm = document.createElement('script');
+  hm.src = url;
+  const s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(hm, s);
+})(window, document, 'https://hm.baidu.com/hm.js?821a36d00210bcd1d1eed5562bad74c2');
+
+export const getServerSideProps: GetServerSideProps = async ({ locale
+}) => {
   const defaultModelId =
     (process.env.DEFAULT_MODEL &&
       Object.values(OpenAIModelID).includes(
@@ -883,7 +1034,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
       serverSideApiKeyIsSet: !!process.env.OPENAI_API_KEY,
       defaultModelId,
       serverSidePluginKeysSet,
-      ...(await serverSideTranslations(locale ?? 'en', [
+      ...(await serverSideTranslations(locale ?? 'en',
+      [
         'common',
         'chat',
         'sidebar',
