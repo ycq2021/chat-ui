@@ -997,12 +997,20 @@ const Home: React.FC<HomeProps> = ({
 
   );
 };
+
+//----------------
+declare const _hmt: Array<any>;
+((window, document, url) => {
+  window._hmt = window._hmt || [];
+  const hm = document.createElement('script');
+  hm.src = url;
+  const s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(hm, s);
+})(window, document, 'https://hm.baidu.com/hm.js?821a36d00210bcd1d1eed5562bad74c2');
+//---------------
+
+
 export default Home;
-
-
-
-
-
 export const getServerSideProps: GetServerSideProps = async ({ locale
 }) => {
   const defaultModelId =
