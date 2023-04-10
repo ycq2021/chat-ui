@@ -733,6 +733,7 @@ const Home: React.FC<HomeProps> = ({
   }, [serverSideApiKeyIsSet]);
 
   return (
+    <>
       <Head>
         <title>ChatGptAi-BOT不限功能版</title>
         <meta name="description" content="ChatGPTBOT but better" />
