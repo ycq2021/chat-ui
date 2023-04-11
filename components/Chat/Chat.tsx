@@ -163,7 +163,7 @@ export const Chat: FC<Props> = memo(
             </div>
             
             <div className="text-center text-lg text-black dark:text-white">
-            欢迎试用，由于API密钥流量不足请点击下面链接获取密钥！
+            欢迎使用，由于公开API密钥流量不足请点击下面链接获取密钥！
               <div className="mb-2 font-bold">
                 Important: ChatGptAi-BOT  is 100% unaffiliated with OpenAI.
               </div>
