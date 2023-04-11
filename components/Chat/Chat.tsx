@@ -179,12 +179,12 @@ export const Chat: FC<Props> = memo(
                 It is <span className="italic">only</span> used to communicate
                 with their API.
               </div>
-              <div className="mb-2">
+              <div className="text-center text-lg text-black dark:text-white">
                 {t(
                   'Please set your OpenAI API key in the bottom left of the sidebar.',
                 )}
               </div>
-              <div className="text-center text-lg text-black dark:text-white">
+              <div >
                
                
                  {t(
