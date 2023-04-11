@@ -188,7 +188,7 @@ export const Chat: FC<Props> = memo(
                
                
                  {t(
-                  "如遇不会科学上网，这个可以赞助也可以获取密钥: ",
+                  "如果你没有 OpenAI API 密钥，你可以在此处获取一个: ",
                 )}
                 <a
                   href="https://www.ttder.cn/skhd/f2fpay/pay.php"
