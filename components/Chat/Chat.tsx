@@ -171,11 +171,11 @@ export const Chat: FC<Props> = memo(
             </div>
             <div className="text-center text-gray-500 dark:text-gray-400">
               <div className="mb-2">
-                ChatGptAi-BOT UI allows you to plug in your API key to use this UI
+                ChatGptAi-BOT  allows you to plug in your API key to use this UI
                 with their API.
               </div>
               <div className="mb-2">
-                别被山寨ChatGPT骗了,本站才是真的.话不多说如果你有官方密钥就可以在这里使用！
+                别被山寨ChatGPT骗了,本站才是真的.话不多说,如果你有官方密钥就可以在这里使用！
                 密钥一般都是永久性的记得保存好不要让别人知道！以免被多人使用封禁！！！
               </div>
               <div className="mb-2">
