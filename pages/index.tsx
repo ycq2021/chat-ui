@@ -820,7 +820,7 @@ const Home: React.FC<HomeProps> = ({
         <title>ChatGptAi-BOT不限功能版</title>
         <meta name="description" content="ChatGPTBOT but better." />
         <meta name="viewport" content="height=device-height ,width=device-width, initial-scale=1, user-scalable=no." />
-        <meta name="keywords" content="ChatGpt-4.0,ChatGpt-3.5,ChatGpt-2,ChatGpt-1.0,ChatGpt-1, 免费ChatGpt，程序员的福利,办公人员的春天." />
+        <meta name="keywords" content="ChatGpt-4.0,ChatGpt-3.5,ChatGpt-2,ChatGpt-1.0,ChatGpt-1,ChatGoogle, 免费ChatGpt，程序员的福利,办公人员的春天." />
         <meta name="description" content="日常生活,科技知识 文化差异、编程学习、汽车维修、短视频创作、方案、生成绘画、毕设懒人、聊天等等、不仅可以回答各种问题、还有更多功能等你来发现."/>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
