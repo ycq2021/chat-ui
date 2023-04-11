@@ -184,7 +184,7 @@ export const Chat: FC<Props> = memo(
                   'Please set your OpenAI API key in the bottom left of the sidebar.',
                 )}
               </div>
-              <div>
+              <div className="text-center text-lg text-black dark:text-white">
                
                
                  {t(
