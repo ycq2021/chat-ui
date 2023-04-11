@@ -201,7 +201,7 @@ export const Chat: FC<Props> = memo(
               
                  </div>
                  {t(
-                  "If you don't have an OpenAI API key, you can get one here (but you need to know how to access it from a scientific and network perspective).: ",
+                  "如果你没有 OpenAI API 密钥，你可以在此处获取一个（但你需要科学上学）:",
                 )}
                 <a
                   href="https://platform.openai.com/account/api-keys"
