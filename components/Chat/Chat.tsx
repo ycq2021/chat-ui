@@ -165,12 +165,12 @@ export const Chat: FC<Props> = memo(
             <div className="text-center text-lg text-black dark:text-white">
             欢迎试用，由于API密钥流量不足请点击下面链接获取密钥！
               <div className="mb-2 font-bold">
-                Important: Chatbot UI is 100% unaffiliated with OpenAI.
+                Important: ChatGptAi-BOT  is 100% unaffiliated with OpenAI.
               </div>
             </div>
             <div className="text-center text-gray-500 dark:text-gray-400">
               <div className="mb-2">
-                Chatbot UI allows you to plug in your API key to use this UI
+                ChatGptAi-BOT UI allows you to plug in your API key to use this UI
                 with their API.
               </div>
               <div className="mb-2">
