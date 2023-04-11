@@ -200,17 +200,7 @@ export const Chat: FC<Props> = memo(
                 </a>
               
                  </div>
-                 {t(
-                  "如果你没有 OpenAI API 密钥，你可以在此处获取一个（但你需要科学上学）:",
-                )}
-                <a
-                  href="https://platform.openai.com/account/api-keys"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  openai.com
-                </a>
+               
               
             </div>
           </div>
