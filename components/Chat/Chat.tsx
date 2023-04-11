@@ -167,6 +167,8 @@ export const Chat: FC<Props> = memo(
               <div className="mb-2 font-bold">
                 Important: ChatGptAi-BOT  is 100% unaffiliated with OpenAI.
               </div>
+              
+              
             </div>
             <div className="text-center text-gray-500 dark:text-gray-400">
               <div className="mb-2">
@@ -199,7 +201,7 @@ export const Chat: FC<Props> = memo(
               
                  </div>
                  {t(
-                  "If you don't have an OpenAI API key, you can get one here: ",
+                  "If you don't have an OpenAI API key, you can get one here (but you need to know how to access it from a scientific and network perspective).: ",
                 )}
                 <a
                   href="https://platform.openai.com/account/api-keys"
