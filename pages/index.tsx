@@ -1,4 +1,12 @@
 
+declare var _hmt: any;
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?821a36d00210bcd1d1eed5562bad74c2";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+
 import { Chat
 } from '@/components/Chat/Chat';
 import { Chatbar
@@ -62,13 +70,6 @@ import { v4 as uuidv4
 } from 'uuid';
 
 
-declare var _hmt: any;
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?821a36d00210bcd1d1eed5562bad74c2";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
 
 
 interface HomeProps {
